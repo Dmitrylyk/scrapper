@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Dmitrylyk/scrapper#readme",
   "dependencies": {
     "eslint": "^5.16.0",
+    "jsdom": "^15.1.1",
     "now": "^15.5.0",
     "request": "^2.88.0",
     "telegraf": "^3.30.1"
