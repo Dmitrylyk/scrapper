@@ -14,6 +14,12 @@ const start = function start(groupID) {
   );
 };
 
+function parse(groupURL) {
+  result = 'test msg';
+  return result;
+
+}
+
 const getGroupURL = function getGroupURL(groupID) {
   return JSDOM.fromURL(URL).then(dom => {
     const document = dom.window.document;
