@@ -7,14 +7,14 @@ const URL = 'http://rozklad.kpi.ua/Schedules/ScheduleGroupSelection.aspx';
 
 
 const start = function start(groupID) {
-  return getGroupURL(URL, groupID).then(groupURL => {
-    return parse(groupURL)
+  return getGroupURL(URL, groupID).then(groupUrl => {
+    return parse(groupUrl)
   },
   error => throw (error);
   );
 };
 
-function parse(groupURL) {
+function parse(groupUrl) {
   result = 'test msg';
   return new Promise(resolve => resolve(result));
 }
