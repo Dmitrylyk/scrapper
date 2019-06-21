@@ -1,0 +1,23 @@
+{
+  "name": "scrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dmitrylyk/scrapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dmitrylyk/scrapper/issues"
+  },
+  "homepage": "https://github.com/Dmitrylyk/scrapper#readme",
+  "dependencies": {
+    "telegraf": "^3.30.1"
+  }
+}
