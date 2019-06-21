@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Dmitrylyk/scrapper#readme",
   "dependencies": {
     "telegraf": "^3.30.1"
+  },
+  "devDependencies": {
+    "lint": "^0.7.0"
   }
 }
