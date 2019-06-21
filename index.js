@@ -1,6 +1,10 @@
+"use strict"
+
 const Telegraf = require('telegraf');
 
-const bot = new Telegraf("process.env.BOT_TOKEN");
+const BOT_TOKEN = process.env.BOT_TOKEN;
+
+const bot = new Telegraf(BOT_TOKEN, { webhookReply: false });
 bot.start((ctx) => ctx.reply('Welcome! Just send me the name of the group, whose schedule you want to get.'));
 bot.help((ctx) => ctx.reply('There is nothing difficult. Just send me the name of the group, whose schedule you want to get.'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));

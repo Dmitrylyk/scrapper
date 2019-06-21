@@ -7,6 +7,4 @@ before_script:
   - npm ci
 
 script:
-  - npm run lint
-  - npm run test
-  - npm run build
+  - now --token=$NOW_TOKEN -e BOT_TOKEN=$BOT_TOKEN
