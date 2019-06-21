@@ -16,8 +16,7 @@ const start = function start(groupID) {
 
 function parse(groupURL) {
   result = 'test msg';
-  return result;
-
+  return new Promise(resolve => resolve(result));
 }
 
 const getGroupURL = function getGroupURL(groupID) {
@@ -31,7 +30,9 @@ const getGroupURL = function getGroupURL(groupID) {
       ctl00$MainContent$ctl00$btnShowSchedule: "Розклад занять"
     };
 
-    [...hiddenInputs].forEach(elem => { elem.value ? form[elem.name] = elem.value });
+    [...hiddenInputs].forEach(elem => {
+      form[elem.name] = elem.value;
+    });
 
     return new Promise(resolve => {
       request.post({
