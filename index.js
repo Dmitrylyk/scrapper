@@ -2,7 +2,7 @@
 
 const Telegraf = require('telegraf');
 
-const BOT_TOKEN = process.env.BOT_TOKEN;
+const BOT_TOKEN = process.env.BOT_TOKEN || '779430236:AAEvVqlYow902TPP1nPzGaecCM3WMRjUYp8';
 
 const bot = new Telegraf(BOT_TOKEN);
 bot.start((ctx) => ctx.reply('Welcome! Just send me the name of the group, whose schedule you want to get.'));
