@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\"",
     "build": "node index.js",
     "lint": "eslint",
-    "setWebhook": "xdg-open https://api.telegram.org/bot$BOT_TOKEN/setWebhook?url=$WEB_HOOK_PATH",
-    "deploy": "now --token=$NOW_TOKEN -e BOT_TOKEN=$BOT_TOKEN WEBHOOK_PATH=$WEBHOOK_PATH"
+    "setWebhook": "xdg-open https://api.telegram.org/bot$BOT_TOKEN/setWebhook?url=$WEBHOOK_PATH",
+    "deploy": "now --token=$NOW_TOKEN -e BOT_TOKEN=$BOT_TOKEN"
   },
   "repository": {
     "type": "git",
