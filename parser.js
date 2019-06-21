@@ -124,3 +124,5 @@ const getGroupURL = function getGroupURL(groupID) {
     });
   });
 };
+
+module.exports = {start};
