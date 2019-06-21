@@ -10,8 +10,9 @@ const start = function start(groupID) {
   return getGroupURL(URL, groupID).then(groupUrl => {
     return parse(groupUrl)
   },
-  error => throw (error);
-  );
+  error => {
+    throw (error)
+  });
 };
 
 function getWeekData (id, document) {
@@ -119,8 +120,9 @@ const getGroupURL = function getGroupURL(groupID) {
         url: URL,
         form: form
       },
-      (err, res) => resolve(`http://rozklad.kpi.ua${res.headers.location}`);
-      );
+      (err, res) => {
+        resolve(`http://rozklad.kpi.ua${res.headers.location}`)  
+      });
     });
   });
 };
