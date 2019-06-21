@@ -24,6 +24,7 @@
   "dependencies": {
     "eslint": "^5.16.0",
     "now": "^15.5.0",
+    "request": "^2.88.0",
     "telegraf": "^3.30.1"
   },
   "devDependencies": {
