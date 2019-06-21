@@ -4,10 +4,10 @@ const Telegraf = require('telegraf');
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
-const bot = new Telegraf(BOT_TOKEN, { webhookReply: false });
+const bot = new Telegraf(BOT_TOKEN);
 bot.start((ctx) => ctx.reply('Welcome! Just send me the name of the group, whose schedule you want to get.'));
 bot.help((ctx) => ctx.reply('There is nothing difficult. Just send me the name of the group, whose schedule you want to get.'));
-bot.hears('hi', (ctx) => ctx.reply('Hey there'));
+bot.on('message', (ctx) => ctx.reply('Hi, friend!'));
 
 
 bot.telegram.setWebhook('https://scrapper.dmitrylyk.now.sh');
