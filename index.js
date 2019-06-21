@@ -1,9 +1,10 @@
 'use strict'
 
 const Telegraf = require('telegraf');
-const {parse} = require('./parser.js');
+import {parse} from './parser.js';
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
+const WEBHOOK_PATH = process.env.WEBHOOK_PATH;
 
 const bot = new Telegraf(BOT_TOKEN);
 bot.start((ctx) => ctx.reply('Welcome! Just send me the name of the group, whose schedule you want to get.'));
