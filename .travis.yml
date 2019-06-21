@@ -8,4 +8,3 @@ before_script:
 
 script:
   - now --token=$NOW_TOKEN -e BOT_TOKEN=$BOT_TOKEN
-  - console.log(BOT_TOKEN)
