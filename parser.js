@@ -112,9 +112,7 @@ const getGroupUrl = function getGroupUrl(url, group) {
       ctl00$MainContent$ctl00$btnShowSchedule: "Розклад занять"
     };
 
-    [...hiddenInputs].forEach(elem => {
-      elem.value ? form[elem.name] = elem.value
-    });
+    [...hiddenInputs].forEach(elem =>{ elem.value ? form[elem.name] = elem.value : console.log("Error")});
 
     return new Promise(resolve => {
       request.post({
