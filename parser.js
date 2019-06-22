@@ -67,7 +67,12 @@ function parseWeek(weekByTr) {
           if (td.textContent.trim() === '') {
             delete week[days[j]][time];
           } else {
-            week[days[j]][time] = td.textContent.trim();
+            const a = td.querySelectorAll('a');
+            let txt = '';
+            for (let k = 0; k < a.length; k++) {
+              txt += a[k].textContent.trim() + '\n';
+            }
+            week[days[j]][time] = txt;
           }
         }
       }
@@ -89,21 +94,6 @@ function formatData(data) {
           result += '\n';
         }
   }
-    /*
-    for (const week in data) {
-      // eslint-disable-next-line no-useless-concat
-      result += week + ':\n\n';
-      result += '++++++++++++++++++++++++++++++++\n\n';
-      for (const day in data[week]) {
-        result += '\t\t\t' + day + ':\n\n';
-        for (const time in result[week][day]) {
-          result += '\t\t\t\t\t\t' + time + ': ' +
-                        data[week][day][time] + '\n\n';
-        }
-        result += '\n\n';
-      }
-      result += '-------------------------------\n\n';
-    }*/
 
   return result;
 }
