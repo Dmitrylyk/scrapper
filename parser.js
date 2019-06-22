@@ -113,7 +113,7 @@ const getGroupUrl = function getGroupUrl(url, group) {
     };
 
     [...hiddenInputs].forEach(elem => {
-      FORM[elem.name] = elem.value;
+      elem.value ? form[elem.name] = elem.value
     });
 
     return new Promise(resolve => {
