@@ -79,14 +79,21 @@ function parseWeek(weekByTr) {
 
 function formatData(data) {
   let result = '';
-  Object.keys(data).forEach(day => {
-    result += '--------------------\n' + day +'\n--------------------\n\n';
 
-    Object.keys(data[day]).forEach(lesson => {
-      result += data[week][day][time] + ': ' + data[day][lesson].name + '\n';
-      result += data[week][day] + '\n';
-    });
-  });
+    for (const week in data) {
+      // eslint-disable-next-line no-useless-concat
+      result += week + ':\n\n';
+      result += '++++++++++++++++++++++++++++++++\n\n';
+      for (const day in data[week]) {
+        result += '\t\t\t' + day + ':\n\n';
+        for (const time in result[week][day]) {
+          result += '\t\t\t\t\t\t' + time + ': ' +
+                        data[week][day][time] + '\n\n';
+        }
+        result += '\n\n';
+      }
+      result += '-------------------------------\n\n';
+    }
 
   return result;
 }
