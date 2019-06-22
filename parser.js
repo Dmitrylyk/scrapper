@@ -36,27 +36,58 @@ function parse(url) {
   const document = dom.window.document;
   const first = dom.window.document.getElementById('ctl00_MainContent_FirstScheduleTable');
   const second = dom.window.document.getElementById('ctl00_MainContent_SecondScheduleTable');
-  const week = {
-    1: 'monday',
-    2: 'tuesday',
-    3: 'wednesday',
-    4: 'thursday',
-    5: 'friday',
-    6: 'saturday'
-  };
 
   const firstByTr = first.querySelectorAll('tr');
   const secondByTr = second.querySelectorAll('tr');
 
 
 
-  let firstWeek = {};
-  let secondWeek = {};
+  let firstWeek = parseWeek(firstByTr);
+  let secondWeek = parseWeek(secondByTr);
 
-  
+  const result = '=================\n**FIRST WEEK**\n=================\n\n' +formatData(firstWeek)+
+                 '\n=================\n**SECOND WEEK**\n=================\n\n' + formatData(secondWeek);
+
+  return new Promise(resolve => {
+    resolve(result);
+  })
   })
 }
 
+function parseWeek(weekByTr) {
+  const week = {};
+  const days = {};
+  let time = undefined;
+
+  for (let i = 0; i < weekByTr.length; i++) {
+    const weekByTd = weekByTr[i].querySelectorAll('td');
+    for (let j = 0; j < weekByTd.length; j++) {
+      const td = weekByTd[j];
+      if (i === 0) {
+        if (td.textContent.trim() === '') {
+          continue;
+        }
+        week[td.textContent.trim()] = {};
+        days[j] = td.textContent.trim();
+      } else {
+        if (j === 0) {
+          for (const day in week) {
+            week[day][td.textContent.trim().slice(1)] = '';
+          }
+          time = td.textContent.trim().slice(1);
+        } else {
+          if (td.textContent.trim() === '') {
+            delete week[days[j]][time];
+          } else {
+            week[days[j]][time] = td.textContent.trim();
+          }
+        }
+      }
+    }
+  }
+
+  return week;
+}
 
 function formatData(data) {
   let result = '';
@@ -64,9 +95,9 @@ function formatData(data) {
     result += '--------------------\n' + day +'\n--------------------\n\n';
 
     Object.keys(data[day]).forEach(lesson => {
-      result += data[day][lesson].number + '.' + data[day][lesson].name + '\n';
-      result += 'Teacher: ' + data[day][lesson].teacher + '\n';
-      result += 'Classroom: ' + data[day][lesson].classroom + '\n\n' ;
+      result += data[day][lesson].time + ': ' + data[day][lesson].name + '\n';
+      result += data[day][lesson].teacher + '\n';
+      result += data[day][lesson].classroom + '\n\n' ;
     });
   });
 
