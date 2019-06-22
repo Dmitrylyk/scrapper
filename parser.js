@@ -1,7 +1,7 @@
 const { JSDOM } = require('jsdom');
 const request = require('request');
 
-const URL = 'http://rozklad.kpi.ua/Schedules/ScheduleGroupSelection.aspx';
+const url = 'http://rozklad.kpi.ua/Schedules/ScheduleGroupSelection.aspx';
 
 function getWeekData (id, document) {
     if(document.getElementById(id) === null || document.getElementById(id).getElementsByTagName('tr') === null){
