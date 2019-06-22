@@ -3,15 +3,6 @@ const request = require('request');
 
 const URL = 'http://rozklad.kpi.ua/Schedules/ScheduleGroupSelection.aspx';
 
-const start = function start(groupID) {
-  return getGroupURL(URL, groupID).then(groupUrl => {
-    return parse(groupUrl)
-  },
-  error => {
-    throw (error)
-  });
-};
-
 function getWeekData (id, document) {
     if(document.getElementById(id) === null || document.getElementById(id).getElementsByTagName('tr') === null){
         throw "Error";
@@ -96,32 +87,37 @@ function formatData(data) {
     return result;
 }
 
+const getGroupUrl = function getGroupUrl(url, group) {
+    return JSDOM.fromURL(url).then(dom => {
+        const document = dom.window.document;
+        const formElement = document.getElementById('aspnetForm');
+        const hiddenInputs = formElement.querySelectorAll('input[type="hidden"]');
 
-const getGroupURL = function getGroupURL(groupID) {
-  return JSDOM.fromURL(URL).then(dom => {
-    const document = dom.window.document;
-    const formElement = document.getElementById('aspnetForm');
-    const hiddenInputs = formElement.querySelectorAll('input[type="hidden"]');
+        const form = {
+            ctl00$MainContent$ctl00$txtboxGroup: group,
+            ctl00$MainContent$ctl00$btnShowSchedule: "Розклад занять"
+        };
 
-    const form = {
-      ctl00$MainContent$ctl00$txtboxGroup: group,
-      ctl00$MainContent$ctl00$btnShowSchedule: "Розклад занять"
-    };
+        [...hiddenInputs].forEach(elem =>{ elem.value ? form[elem.name] = elem.value : console.log("Error")});
 
-    [...hiddenInputs].forEach(elem => {
-      form[elem.name] = elem.value;
+        return new Promise(resolve=>{
+            request.post({
+                url: url,
+                form: form
+            }, (err, res)=>{
+                resolve(`http://rozklad.kpi.ua${res.headers.location}`)
+            });
+        });
     });
+};
 
-    return new Promise(resolve => {
-      request.post({
-        url: URL,
-        form: form
-      },
-      (err, res) => {
-        resolve(`http://rozklad.kpi.ua${res.headers.location}`)
-      });
-    });
-  });
+const start = function start(group){
+    return getGroupUrl(url, group).then(groupUrl=>{
+            return parse(groupUrl)
+        },
+        error=>{
+            throw (error)
+        })
 };
 
 module.exports = {start};
