@@ -85,14 +85,14 @@ function parseWeek(weekByTr) {
 function formatData(data) {
   let result = '';
 
-  for (const day in data){
-        result += '\n' + day.toString() + '\n';
+  for (const day in data) {
+    result += '\n' + day.toString() + '\n';
 
-        for (const time in data[day]) {
-          result += time.toString() + ': ';
-          result += data[day][time].toString();
-          result += '\n';
-        }
+    for (const time in data[day]) {
+      result += '(' + time.toString() + ') ';
+      result += data[day][time].toString();
+      result += '\n';
+    }
   }
 
   return result;
