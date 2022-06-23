@@ -24,7 +24,7 @@
   "dependencies": {
     "canvas": "^2.5.0",
     "eslint": "^5.16.0",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "now": "^15.5.0",
     "request": "^2.88.0",
     "telegraf": "^3.30.1",
